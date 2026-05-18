@@ -1,0 +1,13 @@
+{
+    "name": "PageBuilder",
+    "alias": "pagebuilder",
+    "description": "Reusable page builder module",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\PageBuilder\\Providers\\PageBuilderServiceProvider"
+    ],
+    "files": [
+        "Helpers/helpers.php"
+    ]
+}

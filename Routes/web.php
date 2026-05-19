@@ -12,7 +12,14 @@ use Modules\PageBuilder\Http\Controllers\PageBuilderPageController;
 use Modules\PageBuilder\Http\Controllers\PageBuilderPresetController;
 use Modules\PageBuilder\Http\Controllers\PageBuilderPublicController;
 use Modules\PageBuilder\Http\Controllers\PageBuilderReadinessController;
+use Modules\PageBuilder\Http\Controllers\PageBuilderModuleSettingsController;
 use Modules\PageBuilder\Http\Controllers\PageBuilderReusableBlockController;
+
+// Module settings (superadmin only, no page_builder_enabled guard)
+Route::middleware(['auth'])->prefix('settings/modules')->name('page-builder.module-settings.')->group(function () {
+    Route::get('/page-builder', [PageBuilderModuleSettingsController::class, 'index'])->name('index');
+    Route::put('/page-builder', [PageBuilderModuleSettingsController::class, 'update'])->name('update');
+});
 
 // Public (no auth required)
 Route::get('/landing-pages/{pageBuilderPage:slug}', [PageBuilderPublicController::class, 'show'])

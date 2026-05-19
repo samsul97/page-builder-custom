@@ -3,6 +3,7 @@
 namespace Modules\PageBuilder\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Modules\PageBuilder\Settings\PageBuilderSettings;
 
 class PageBuilderServiceProvider extends ServiceProvider
 {
@@ -19,6 +20,13 @@ class PageBuilderServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->register(RouteServiceProvider::class);
+
+        // Bind PageBuilderSettings so it can be injected / resolved via app()
+        // Spatie Settings uses lazy-loading via __get(), so new PageBuilderSettings()
+        // only hits the DB when a property is first accessed.
+        if (class_exists(\Spatie\LaravelSettings\Settings::class)) {
+            $this->app->scoped(PageBuilderSettings::class, fn () => new PageBuilderSettings());
+        }
     }
 
     protected function registerConfig(): void

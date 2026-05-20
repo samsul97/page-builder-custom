@@ -24,15 +24,15 @@ class PageBuilderReadinessController extends Controller
         $userCoreLayouts = PageBuilderCoreLayout::query()->where('key', '!=', 'default');
         $userChromeLayouts = PageBuilderLayout::query()->where('key', '!=', 'default');
 
-        $requiredRoutes = [
+        $requiredRoutes = array_filter([
             'Public landing page' => 'page-builder.public.show',
             'Page preview' => 'page-builder.pages.preview',
             'Core preview' => 'page-builder.core-layouts.preview',
             'Chrome preview' => 'page-builder.chrome-layouts.preview',
             'Preset catalog' => 'page-builder.presets.index',
             'Plugins / Theme' => 'page-builder.plugins-theme.index',
-            'Ads Builder settings' => 'site-settings.ads-builder.edit',
-        ];
+            'Ads Builder settings' => Route::has('site-settings.ads-builder.edit') ? 'site-settings.ads-builder.edit' : null,
+        ]);
 
         $ads = [
             'Meta Pixel Script' => filled(site_setting('ads_builder_meta_pixel_script')),
@@ -67,7 +67,9 @@ class PageBuilderReadinessController extends Controller
                 'label' => 'Page Builder enabled',
                 'ready' => page_builder_enabled(),
                 'detail' => 'Main feature flag for the admin and public builder routes.',
-                'url' => route('site-settings.page-builder.edit'),
+                'url' => Route::has('site-settings.page-builder.edit')
+                    ? route('site-settings.page-builder.edit')
+                    : (Route::has('page-builder.module-settings.index') ? route('page-builder.module-settings.index') : null),
             ],
             [
                 'label' => 'At least one preset exists',
@@ -91,7 +93,7 @@ class PageBuilderReadinessController extends Controller
                 'label' => 'Builder ads configured',
                 'ready' => collect($ads)->contains(true),
                 'detail' => collect($ads)->filter()->count() . ' of ' . count($ads) . ' ads fields are filled.',
-                'url' => route('site-settings.ads-builder.edit'),
+                'url' => Route::has('site-settings.ads-builder.edit') ? route('site-settings.ads-builder.edit') : null,
             ],
             [
                 'label' => 'Recommended preset assets enabled',
@@ -232,7 +234,7 @@ class PageBuilderReadinessController extends Controller
                 'name' => 'Test Ads Builder',
                 'area' => 'Tracking',
                 'description' => 'Confirm landing pages use ads-builder scripts while editor preview keeps ads and Meta CAPI disabled.',
-                'url' => route('site-settings.ads-builder.edit'),
+                'url' => Route::has('site-settings.ads-builder.edit') ? route('site-settings.ads-builder.edit') : route('page-builder.readiness.index'),
             ],
             [
                 'key' => 'preset-instantiate',

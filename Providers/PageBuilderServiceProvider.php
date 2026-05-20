@@ -15,6 +15,7 @@ class PageBuilderServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerViews();
         $this->loadMigrationsFrom(module_path($this->moduleName, 'Database/Migrations'));
+        $this->registerBreadcrumbs();
     }
 
     public function register(): void
@@ -59,6 +60,15 @@ class PageBuilderServiceProvider extends ServiceProvider
             }
         }
         return $paths;
+    }
+
+    protected function registerBreadcrumbs(): void
+    {
+        $breadcrumbsFile = module_path($this->moduleName, 'Routes/breadcrumbs.php');
+
+        if (class_exists(\Diglactic\Breadcrumbs\Breadcrumbs::class) && file_exists($breadcrumbsFile)) {
+            require $breadcrumbsFile;
+        }
     }
 
     public function provides(): array

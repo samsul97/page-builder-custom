@@ -38,6 +38,21 @@
                     Content Types
                 </a>
             </li>
+            <li class="nav-item">
+                <a href="{{ route('page-builder.presets.index') }}" class="nav-link {{ set_active('page-builder.presets') }}">
+                    Presets
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('page-builder.plugins-theme.index') }}" class="nav-link {{ set_active('page-builder.plugins-theme') }}">
+                    Library
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('page-builder.readiness.index') }}" class="nav-link {{ set_active('page-builder.readiness') }}">
+                    Readiness
+                </a>
+            </li>
         </ul>
     </div>
 </li>

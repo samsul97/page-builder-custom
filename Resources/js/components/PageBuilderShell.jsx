@@ -64,7 +64,7 @@ export default function PageBuilderShell({ payload }) {
             </div>
 
             <div className="col-xl-8">
-                <div className="card h-100 border-0 shadow-sm">
+                <div className="card border-0 shadow-sm">
                     <div className="card-header bg-transparent border-0 pt-4 px-4">
                         <h5 className="mb-1">Page Builder Workspace</h5>
                         <p className="text-muted mb-0">This workspace currently holds the shared engine. The final product will branch into Start Custom and Start From Template.</p>
@@ -123,7 +123,7 @@ export default function PageBuilderShell({ payload }) {
                     </div>
                 </div>
 
-                <div className="card h-100 border-0 shadow-sm">
+                <div className="card border-0 shadow-sm">
                     <div className="card-header bg-transparent border-0 pt-4 px-4">
                         <h5 className="mb-1">Product Direction</h5>
                         <p className="text-muted mb-0">This helps explain where the current custom path ends and where the future template path begins.</p>

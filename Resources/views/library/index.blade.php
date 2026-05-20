@@ -260,7 +260,7 @@
                 </div>
             </div>
 
-            <div class="card border-0 shadow-sm h-100">
+            <div class="card border-0 shadow-sm">
                 <div class="card-header bg-transparent border-0 pt-4 px-4">
                     <h5 class="mb-1">Library Summary</h5>
                     <p class="text-muted mb-0">This keeps the future plugin/theme surface concrete without turning it into a marketplace too early.</p>

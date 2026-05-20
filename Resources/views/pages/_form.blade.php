@@ -304,7 +304,9 @@
                     <h5 class="card-title mb-1">Info Ads</h5>
                     <p class="text-muted mb-0 small">This page uses the shared `ads-builder` configuration, separated from the main website ads.</p>
                 </div>
+                @if(Route::has('site-settings.ads-builder.edit'))
                 <a href="{{ route('site-settings.ads-builder.edit') }}" class="btn btn-sm btn-light">Open Ads Builder</a>
+                @endif
             </div>
             <div class="card-body">
                 <div class="row g-3">

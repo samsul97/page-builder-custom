@@ -205,7 +205,9 @@
                             </div>
                         @endforeach
                     </div>
+                    @if(Route::has('site-settings.ads-builder.edit'))
                     <a href="{{ route('site-settings.ads-builder.edit') }}" class="btn btn-outline-primary btn-sm mt-3">Open Ads Builder</a>
+                    @endif
                 </div>
             </div>
 

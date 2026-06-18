@@ -66,9 +66,23 @@ class PageBuilderServiceProvider extends ServiceProvider
     {
         $breadcrumbsFile = module_path($this->moduleName, 'Routes/breadcrumbs.php');
 
-        if (class_exists(\Diglactic\Breadcrumbs\Breadcrumbs::class) && file_exists($breadcrumbsFile)) {
-            require $breadcrumbsFile;
+        if (! class_exists(\Diglactic\Breadcrumbs\Breadcrumbs::class) || ! file_exists($breadcrumbsFile)) {
+            return;
         }
+
+        $appBreadcrumbsFile = base_path('routes/breadcrumbs.php');
+        $appBreadcrumbs = file_exists($appBreadcrumbsFile) ? file_get_contents($appBreadcrumbsFile) : false;
+
+        // Let the host app own translated PageBuilder breadcrumbs when present.
+        if (is_string($appBreadcrumbs) && str_contains($appBreadcrumbs, 'page-builder.index')) {
+            return;
+        }
+
+        if (\Diglactic\Breadcrumbs\Breadcrumbs::exists('page-builder.index')) {
+            return;
+        }
+
+        require $breadcrumbsFile;
     }
 
     public function provides(): array

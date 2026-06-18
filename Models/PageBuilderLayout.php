@@ -107,7 +107,7 @@ class PageBuilderLayout extends Model
                 'variant' => static::FOOTER_VARIANT_COLUMNS,
                 'surface_style' => 'dark',
                 'brand_title' => site_setting('footer_brand_title', 'RAWDEE'),
-                'brand_text' => site_setting('footer_brand_text', 'Kopi yang bisa kamu telusuri— dari kebun di Rawageude sampai ke tangan yang menikmatinya.'),
+                'brand_text' => site_setting('footer_brand_text', 'Kopi yang bisa ditelusuri — dari kebun di Rawageude sampai ke tangan yang menikmatinya.'),
                 'social_title' => site_setting('footer_social_title', 'Social Media'),
                 'social_links' => [
                     ['label' => site_setting('footer_social_instagram_label', 'Instagram'), 'url' => site_setting('footer_social_instagram_url', 'https://instagram.com/')],
